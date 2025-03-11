@@ -1,7 +1,31 @@
+*{
+    background-color: gray;
+}
+
 .Principal{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
 
+}
+
+.eliminar{
+    display: none;
+}
+
+.tarea-item:hover .eliminar{
+    display: inline-block;
+}
+
+.tarea-item{
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    width: 1300px ;
+}
+
+.tareas-pendi{
+    display: flex;
+    justify-content: center;
 }
