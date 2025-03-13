@@ -2,13 +2,16 @@ import React, { useState } from "react";
 
 const Home = () => {
 	const [tareas, setTareas] = useState([]);
+	const [inputValue, setInputValue] = useState("")
 	return (
 		<div className="Principal container">
 			<h1>Todo's</h1>
-			<input type="text" className="form-control" placeholder="tareas por hacer"
+			<input type="text" className="form-control" placeholder="tareas por hacer" value={inputValue}
+				onChange={(event) => setInputValue(event.target.value)}
 				onKeyDown={(event) => {
-					if (event.key == "Enter") {
-						setTareas([...tareas, event.target.value])
+					if (event.key === 'Enter' && inputValue.trim() !== '') {
+						setTareas([...tareas, inputValue]);
+						setInputValue('');
 					}
 				}}
 			/>
