@@ -1,8 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Home = () => {
+	const apiUrl = "https://playground.4geeks.com/todo";
+	const userName = "chefdude99";
 	const [tareas, setTareas] = useState([]);
-	const [inputValue, setInputValue] = useState("")
+	const [inputValue, setInputValue] = useState("");
+
+	useEffect(() => {
+		console.log("Hello")
+		fetch(`${apiUrl}/users/${userName}`)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data) 
+				setTareas(data.todos)})
+			.catch((error) => console.log(error))
+	}, [])
 	return (
 		<div className="Principal container">
 			<h1>Todo's</h1>
@@ -18,7 +30,7 @@ const Home = () => {
 			<ul className="list-group">
 				{tareas.map((tarea, index) =>
 					<li className="tarea-item list-group-item" key={index}>
-						<span className="texto ">{tarea}</span>
+						<span className="texto ">{tarea.label}</span>
 						<button type="button" className="eliminar btn" onClick={() => {
 							let newTareas = [...tareas];
 							newTareas.splice(index, 1);
